@@ -7,20 +7,18 @@ Group:		Libraries
 URL:		http://www.libqxt.org/
 Source0:	http://bitbucket.org/libqxt/libqxt/get/v%{version}.tar.bz2
 # Source0-md5:	129527c1b18676720f59d22bb4d5ef18
+BuildRequires:	QtDesigner-devel
 BuildRequires:	avahi-compat-libdns_sd-devel
 BuildRequires:	avahi-devel
 BuildRequires:	db-devel
 BuildRequires:	openssl-devel
 BuildRequires:	qt4-build
-BuildRequires:	QtDesigner-devel
+BuildRequires:	qt4-qmake
 BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-lib-libXrandr-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-# XXX: unify and move to rpm-build-macros
 %define		_qt4_datadir	%{_datadir}/qt4
-%define		_qt4_headerdir	%{_includedir}
-%define		_qt4_libdir		%{_libdir}
 %define		_qt4_plugindir	%{_libdir}/qt4/plugins
 
 %description
@@ -36,6 +34,7 @@ Requires:	avahi-compat-libdns_sd-devel
 Requires:	avahi-devel
 Requires:	db-devel
 Requires:	qt4-build
+Requires:	qt4-qmake
 
 %description	devel
 This package contains libraries and header files for developing
@@ -62,6 +61,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	INSTALL_ROOT=$RPM_BUILD_ROOT
 
+%attr(755,root,root)
+rm -f $RPM_BUILD_ROOT%{_libdir}/lib*.so.0.6
+
 # We are installing these to the proper location
 rm -rf $RPM_BUILD_ROOT%{_prefix}/doc
 
@@ -74,14 +76,38 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS CHANGES *.txt README
-# XXX ghost and stuff
-%attr(755,root,root) %{_qt4_libdir}/*.so.*
+%attr(755,root,root) %{_libdir}/libQxtBerkeley.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libQxtBerkeley.so.0
+%attr(755,root,root) %{_libdir}/libQxtCore.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libQxtCore.so.0
+%attr(755,root,root) %{_libdir}/libQxtGui.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libQxtGui.so.0
+%attr(755,root,root) %{_libdir}/libQxtNetwork.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libQxtNetwork.so.0
+%attr(755,root,root) %{_libdir}/libQxtSql.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libQxtSql.so.0
+%attr(755,root,root) %{_libdir}/libQxtWeb.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libQxtWeb.so.0
+%attr(755,root,root) %{_libdir}/libQxtZeroconf.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libQxtZeroconf.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %doc examples
 #%doc doc/html
-%{_qt4_headerdir}/*
-%{_qt4_libdir}/*.so
+%{_includedir}/QxtBerkeley
+%{_includedir}/QxtCore
+%{_includedir}/QxtGui
+%{_includedir}/QxtNetwork
+%{_includedir}/QxtSql
+%{_includedir}/QxtWeb
+%{_includedir}/QxtZeroconf
+%{_libdir}/libQxtBerkeley.so
+%{_libdir}/libQxtCore.so
+%{_libdir}/libQxtGui.so
+%{_libdir}/libQxtNetwork.so
+%{_libdir}/libQxtSql.so
+%{_libdir}/libQxtWeb.so
+%{_libdir}/libQxtZeroconf.so
 %{_qt4_plugindir}/designer/*.so
 %{_qt4_datadir}/mkspecs/features/qxt*.prf
