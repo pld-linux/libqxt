@@ -8,6 +8,8 @@ URL:		http://www.libqxt.org/
 Source0:	http://bitbucket.org/libqxt/libqxt/get/v%{version}.tar.bz2
 # Source0-md5:	129527c1b18676720f59d22bb4d5ef18
 BuildRequires:	QtDesigner-devel
+BuildRequires:	QtNetwork-devel
+BuildRequires:	QtSql-devel
 BuildRequires:	avahi-compat-libdns_sd-devel
 BuildRequires:	avahi-devel
 BuildRequires:	db-devel
@@ -15,6 +17,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	qt4-build
 BuildRequires:	qt4-qmake
 BuildRequires:	sed >= 4.0
+BuildRequires:	which
 BuildRequires:	xorg-lib-libXrandr-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -61,7 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	INSTALL_ROOT=$RPM_BUILD_ROOT
 
-%attr(755,root,root)
 rm -f $RPM_BUILD_ROOT%{_libdir}/lib*.so.0.6
 
 # We are installing these to the proper location
