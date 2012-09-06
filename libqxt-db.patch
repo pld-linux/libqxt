@@ -1,0 +1,17 @@
+--- libqxt/config.tests/db/main.cpp~	2010-04-18 16:35:25.000000000 +0200
++++ libqxt/config.tests/db/main.cpp	2012-09-06 13:33:59.989693016 +0200
+@@ -1,5 +1,6 @@
+ #include <db.h>
+ 
++#if DB_VERSION_MAJOR < 5
+ #if DB_VERSION_MAJOR < 4
+ #error db>=4.4 required
+ #endif
+@@ -11,6 +12,7 @@
+ #if DB_VERSION_MINOR < 6
+ #warning db < 4.6, some features will be disabled
+ #endif
++#endif
+ 
+ int main (int,char**)
+ {

@@ -7,6 +7,8 @@ Group:		Libraries
 URL:		http://www.libqxt.org/
 Source0:	http://bitbucket.org/libqxt/libqxt/get/v%{version}.tar.bz2
 # Source0-md5:	129527c1b18676720f59d22bb4d5ef18
+Patch0:		%{name}-linking.patch
+Patch1:		%{name}-db.patch
 BuildRequires:	QtDesigner-devel
 BuildRequires:	QtNetwork-devel
 BuildRequires:	QtSql-devel
@@ -45,6 +47,8 @@ applications that use LibQxt.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
+%patch1 -p1
 
 # We don't want rpath
 sed -i '/-rpath/d' src/qxtlibs.pri
