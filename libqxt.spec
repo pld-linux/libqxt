@@ -1,7 +1,7 @@
 Summary:	Qt extension library
 Name:		libqxt
 Version:	0.6.0
-Release:	1
+Release:	2
 License:	CPL or LGPL v2
 Group:		Libraries
 URL:		http://www.libqxt.org/
