@@ -1,14 +1,16 @@
+# NOTE
+# - no longer maintained
 Summary:	Qt extension library
 Name:		libqxt
 Version:	0.6.0
 Release:	2
 License:	CPL or LGPL v2
 Group:		Libraries
-URL:		http://www.libqxt.org/
 Source0:	http://bitbucket.org/libqxt/libqxt/get/v%{version}.tar.bz2
 # Source0-md5:	129527c1b18676720f59d22bb4d5ef18
 Patch0:		%{name}-linking.patch
 Patch1:		%{name}-db.patch
+URL:		https://bitbucket.org/libqxt/libqxt/wiki/Home
 BuildRequires:	QtDesigner-devel
 BuildRequires:	QtNetwork-devel
 BuildRequires:	QtSql-devel
